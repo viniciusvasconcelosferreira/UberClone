@@ -7,12 +7,16 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import config from '../../config'
+import MapViewDirections from 'react-native-maps-directions';
 
 LogBox.ignoreAllLogs(); //IGNORAR TODAS AS NOTIFICAÇÕES DE REGISTRO
 
 export default function Home() {
+    const mapEl = useRef(null);
     const [origin, setOrigin] = useState(null);
     const [destination, setDestination] = useState(null);
+    const [distance, setDistance] = useState(null);
+    const [duration, setDuration] = useState(null);
 
     useEffect(() => {
         //INVOCAÇÃO AUTOMATICA
@@ -38,7 +42,31 @@ export default function Home() {
                      initialRegion={origin}
                      showsUserLocation={true}
                      zoomEnabled={true}
-                     loadingEnabled={true}>
+                     loadingEnabled={true}
+                     ref={mapEl}>
+                {destination &&
+                <MapViewDirections
+                    origin={origin}
+                    destination={destination}
+                    apikey={config.googleApi}
+                    strokeWidth={3}
+                    onReady={result => {
+                        console.log(result);
+                        setDistance(result.distance);
+                        mapEl.current.fitToCoordinates(
+                            result.coordinates, {
+                                edgePadding: {
+                                    top: 50,
+                                    bottom: 50,
+                                    left: 50,
+                                    right: 50
+                                }
+                            }
+                        );
+                    }
+                    }
+                />
+                }
             </MapView>
             <View style={css.search}>
                 <GooglePlacesAutocomplete
@@ -59,6 +87,11 @@ export default function Home() {
                     fetchDetails={true}
                     styles={{listView: {height: 100}}}
                 />
+                <View>
+                    {distance &&
+                    <Text>Distância: {distance}m</Text>
+                    }
+                </View>
             </View>
         </View>
     );
