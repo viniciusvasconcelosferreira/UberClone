@@ -1,6 +1,19 @@
 import React from 'react';
-import Home from "./src/views/Home";
+// NAVEGAÇÃO
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+// ROTAS
+import {Home, Checkout} from './src/routes'
+
+const Stack = createStackNavigator();
 
 export default function App() {
-    return <Home/>;
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+                <Stack.Screen name="Checkout" component={Checkout} options={{headerShown: false}}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
