@@ -22,19 +22,25 @@ app.post('/', (req, res) => {
     let preference = {
         //ARRAY DE ITENS
         items: [{
-            title: 'Blue shirt',
-            quantity: 10,
+            title: req.body.address,
+            quantity: 1,
             currency_id: 'BRL',
-            unit_price: 10
+            unit_price: parseFloat(req.body.price)
         }],
         payer: {
             //EMAIL DO PAGADOR
+            name: "Vinicius Vasconcelos",
             email: "demo@mail.com"
         },
         payment_method: {
             //LIMITE DE PARCELAS
-            installments: 3
-        }
+            installments: 3,
+            //EXCLUSÃO DE MÉTODOS DE PAGAMENTO
+            excluded_payment_types: [
+                {"id": "ticket"},
+                {"id": "debit_card"}
+            ]
+        },
     };
 
     mercadopago.preferences.create(preference).then(function (data) {

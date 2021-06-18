@@ -6,6 +6,10 @@ const css = StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
     },
+    checkoutmp: {
+        flex: 1,
+        marginTop: 30
+    }
 });
 
 export {css};
