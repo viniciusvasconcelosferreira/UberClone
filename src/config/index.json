@@ -1,3 +1,6 @@
 {
-  "googleApi": "AIzaSyCFVvTwBzEJ1H5msb77goLcGaaKsB7HPjU"
+  "googleApi": "AIzaSyCFVvTwBzEJ1H5msb77goLcGaaKsB7HPjU",
+  "publicKey": "TEST-08762360-e7be-4771-b8b7-2acc9841fbf6",
+  "token": "TEST-2719803204474034-061819-e36f65ceaaef05063141534e0b338e09-777812070",
+  "urlRoot": "http://10.0.0.149:3000/"
 }
