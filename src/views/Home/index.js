@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {LogBox, Text, View, TouchableOpacity, NativeModules} from 'react-native';
+import {LogBox, Text, View, TouchableOpacity, NativeModules, KeyboardAvoidingView, Platform} from 'react-native';
 import {css} from "./styles";
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
@@ -42,7 +42,9 @@ export default function Home(props) {
     }, []);
 
     return (
-        <View style={css.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={css.container}>
             <MapView style={css.map}
                      initialRegion={origin}
                      showsUserLocation={true}
@@ -123,6 +125,6 @@ export default function Home(props) {
                 </View>
                 }
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 }
