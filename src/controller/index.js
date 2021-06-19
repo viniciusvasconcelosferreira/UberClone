@@ -50,7 +50,10 @@ app.post('/', (req, res) => {
     };
 
     mercadopago.preferences.create(preference).then(function (data) {
-        //RESPONSE PARA O FRONTEND
+        /*
+         - RESPONSE PARA O FRONTEND
+         - EM PRODUÇÃO A RESPONSE SERÁ DO init_point
+        */
         res.send(JSON.stringify(data.response.sandbox_init_point));
     }).catch(function (error) {
         console.log(error);
