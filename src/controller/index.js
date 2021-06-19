@@ -32,6 +32,12 @@ app.post('/', (req, res) => {
             name: "Vinicius Vasconcelos",
             email: "demo@mail.com"
         },
+        //URLS DE RETORNO
+        back_urls: {
+            failure: "https://webdesignemfoco.com/failure",
+            pending: "https://webdesignemfoco.com/pending",
+            success: "https://webdesignemfoco.com/success",
+        },
         payment_method: {
             //LIMITE DE PARCELAS
             installments: 3,

@@ -31,6 +31,14 @@ export default function Checkout(props) {
     //MUDANÇA DE ESTADO DE NAVEGAÇÃO
     async function stateChange(state) {
         console.log(state);
+        let url = state.url;
+        if (state.canGoBack === true && !url.includes('mercadopago')) {
+            if (url.includes('approved')) {
+                props.navigation.navigate('Tracking');
+            } else {
+                props.navigation.navigate('Home');
+            }
+        }
     }
 
     return (
